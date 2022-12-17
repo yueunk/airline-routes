@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlane } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
 import Table from "./components/Table.js";
 import { getAirlineById, getAirportByCode } from './data';
@@ -21,7 +23,7 @@ const App = () => {
   return (
     <div className="app">
       <header className="header">
-        <h1 className="title">Airline Routes</h1>
+        <h1 className="title">AIRLINE ROUTES <FontAwesomeIcon icon={faPlane} /></h1>
       </header>
       <section>
         <Table className="routes-table" columns={columns} rows="" format={formatValue} />
