@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { routes } from "../data.js";
 
 const Table = ({ className, columns, format, perPage }) => {
   const [ page, setPage ] = useState(0);
+  const [ selectAirline, setSelectAirline ] = useState('All');
 
   const total = routes.length;
   const start = perPage * page;
-  const filteredRoutes = routes.slice(start, start + perPage);
+  const filteredRoutes = routes.slice(start, start + perPage); // pass as a prop from the App component
 
   const handleClickPrev = (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ const Table = ({ className, columns, format, perPage }) => {
         <tr>
           {columns.map((col, idx) => <th key={idx}>{col.name}</th>)}
         </tr>
-        {filteredRoutes.map((route, idx) => {
+        {filteredRoutes.filter(({ airline }) => selectAirline !== 'All' ? format('airline', airline) === selectAirline : true).map((route, idx) => {
           return (
             <tr key={idx}>
               <td>{format('airline', route.airline)}</td>
@@ -46,7 +47,6 @@ const Table = ({ className, columns, format, perPage }) => {
         </p>
       </div>
     </>
-    
   )
 }
 
