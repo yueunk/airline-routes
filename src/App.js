@@ -26,7 +26,7 @@ const App = () => {
         <h1 className="title">AIRLINE ROUTES <FontAwesomeIcon icon={faPlane} /></h1>
       </header>
       <section>
-        <Table className="routes-table" columns={columns} rows="" format={formatValue} />
+        <Table className="routes-table" columns={columns} rows="" format={formatValue} perPage={25} />
       </section>
     </div>
   )

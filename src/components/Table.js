@@ -1,32 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { routes } from "../data.js";
 
-/*
-Step 5: Add Pagination to Table
-Update the Table component so that only 25 rows are shown at a time
-Display a message that says Showing n - n+25 routes of x total routes
-Display Previous Page and Next Page buttons
-Adjust the page shown when the buttons are clicked
-Disable the paging controls to prevent a user from going outside valid bounds
-Allow the number of rows per page to be specified as a perPage prop
-*/
+const Table = ({ className, columns, format, perPage }) => {
+  const [ page, setPage ] = useState(0);
 
-const Table = ({ columns, format }) => {
+  const total = routes.length;
+  const start = perPage * page;
+  const filteredRoutes = routes.slice(start, start + perPage);
+
+  const handleClickPrev = (e) => {
+    e.preventDefault();
+    setPage(page - 1);
+  }
+
+  const handleClickNext = (e) => {
+    e.preventDefault();
+    setPage(page + 1);
+  }
+
   return (
-    <table>
-      <tr>
-        {columns.map((col, idx) => <th key={idx}>{col.name}</th>)}
-      </tr>
-      {routes.map((route, idx) => {
-        return (
-          <tr key={idx}>
-            <td>{format('airline', route.airline)}</td>
-            <td>{format('src', route.src)}</td>
-            <td>{format('dest', route.dest)}</td>
-          </tr>
-        )
-      })}
-    </table>
+    <>
+      <table className={className}>
+        <tr>
+          {columns.map((col, idx) => <th key={idx}>{col.name}</th>)}
+        </tr>
+        {filteredRoutes.map((route, idx) => {
+          return (
+            <tr key={idx}>
+              <td>{format('airline', route.airline)}</td>
+              <td>{format('src', route.src)}</td>
+              <td>{format('dest', route.dest)}</td>
+            </tr>
+          )
+        })}
+      </table>
+      <div className="pagination">
+        <p>
+          Showing {perPage * page + 1} - {perPage * (page + 1)} of {total} routes
+        </p>
+        <p>
+          <button key="prev" disabled={page === 0} onClick={handleClickPrev}><FontAwesomeIcon icon={faChevronLeft} /></button>
+          <button key="next" disabled={page === (total / perPage) - 1} onClick={handleClickNext}><FontAwesomeIcon icon={faChevronRight} /></button>
+        </p>
+      </div>
+    </>
+    
   )
 }
 
