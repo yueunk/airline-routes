@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import { routes } from "../data.js";
 
-const Table = ({ className, columns, format, perPage }) => {
+const Table = ({ className, columns, format, perPage, routes }) => {
   const [ page, setPage ] = useState(0);
 
   const total = routes.length;
   const start = perPage * page;
-  const filteredRoutes = routes.slice(start, start + perPage);
+  const filteredRoutes = routes.slice(start, start + perPage); // pass as a prop from the App component
 
   const handleClickPrev = (e) => {
     e.preventDefault();
@@ -18,6 +17,12 @@ const Table = ({ className, columns, format, perPage }) => {
   const handleClickNext = (e) => {
     e.preventDefault();
     setPage(page + 1);
+  }
+
+  const getRange = () => {
+    let start = perPage * page + 1;
+    let end = (perPage * (page + 1)) > total ? total : perPage * (page + 1);
+    return { start, end };
   }
 
   return (
@@ -38,7 +43,7 @@ const Table = ({ className, columns, format, perPage }) => {
       </table>
       <div className="pagination">
         <p>
-          Showing {perPage * page + 1} - {perPage * (page + 1)} of {total} routes
+          Showing {getRange().start} - {getRange().end} of {total} routes
         </p>
         <p>
           <button key="prev" disabled={page === 0} onClick={handleClickPrev}><FontAwesomeIcon icon={faChevronLeft} /></button>
@@ -46,7 +51,6 @@ const Table = ({ className, columns, format, perPage }) => {
         </p>
       </div>
     </>
-    
   )
 }
 
