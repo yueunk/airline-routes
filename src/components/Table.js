@@ -7,7 +7,7 @@ const Table = ({ className, columns, format, perPage, routes }) => {
 
   const total = routes.length;
   const start = perPage * page;
-  const filteredRoutes = routes.slice(start, start + perPage); // pass as a prop from the App component
+  const filteredRoutes = routes.slice(start, start + perPage);
 
   const handleClickPrev = (e) => {
     e.preventDefault();

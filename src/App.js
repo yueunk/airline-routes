@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Table from "./components/Table.js";
 import Select from "./components/Select.js";
+import Map from "./components/Map.js";
 import { routes, airlines, airports, getAirlineById, getAirportByCode } from './data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons'
@@ -18,9 +19,9 @@ const App = () => {
   
   const formatValue = (property, value) => {
     if (property === "airline") {
-      return getAirlineById(value);
+      return getAirlineById(value).name;
     } else {
-      return getAirportByCode(value);
+      return getAirportByCode(value).name;
     }
   }
   
@@ -42,8 +43,8 @@ const App = () => {
 
   const filterRoutes = () => {
     let filtered = routes;
-    if (airline !== 'all') filtered = filtered.filter(({ airline : airlineId }) => getAirlineById(airlineId) === airline);
-    if (airport !== 'all') filtered = filtered.filter(({ src, dest }) => getAirportByCode(src) === airport || getAirportByCode(dest) === airport);
+    if (airline !== 'all') filtered = filtered.filter(({ airline : airlineId }) => getAirlineById(airlineId).name === airline);
+    if (airport !== 'all') filtered = filtered.filter(({ src, dest }) => getAirportByCode(src).name === airport || getAirportByCode(dest).name === airport);
     return filtered;
   }
 
@@ -53,6 +54,7 @@ const App = () => {
         <h1 className="title">AIRLINE ROUTES <FontAwesomeIcon icon={faPlane} /></h1>
       </header>
       <section>
+        <Map routes={filterRoutes()} />
         <p>
           <Select key="airline" name="airline" label="Show routes on " list={airlines} onChange={handleSelectAirline} selected={airline} routes={filterRoutes()} />
           <Select key="airport" name="airport" label="flying in or out of " list={airports} onChange={handleSelectAirport} selected={airport} routes={filterRoutes()} />
