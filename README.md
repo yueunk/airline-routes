@@ -40,5 +40,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Run with Docker
 
 ```bash
-docker run -it yueun89/airline-routes:latest
+docker run -it -p 3000:3000 yueun89/airline-routes:latest
 ```
