@@ -8,9 +8,9 @@ const Select = ({ name, label, list, onChange, selected, routes }) => {
 
   const isAvailable = (routes, name, itemName) => {
     if (name === 'airline') {
-      return routes.find(({ airline }) => getAirlineById(airline) === itemName);
+      return routes.find(({ airline }) => getAirlineById(airline).name === itemName);
     } else {
-      return routes.find(({ src, dest }) => getAirportByCode(src) === itemName || getAirportByCode(dest) === itemName);
+      return routes.find(({ src, dest }) => getAirportByCode(src).name === itemName || getAirportByCode(dest).name === itemName);
     }
   }
 
