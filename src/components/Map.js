@@ -6,7 +6,8 @@ const Map = ({ routes }) => {
     const sourceAirport = getAirportByCode(route.src);
     const destinationAirport = getAirportByCode(route.dest);
     const d = `M${sourceAirport.long} ${sourceAirport.lat} L ${destinationAirport.long} ${destinationAirport.lat}`;
-
+    
+    // g element to group circles and path (src --- dest) for each route
     return (
       <g key={route.airline + route.src + route.dest}>
         <circle
@@ -27,6 +28,7 @@ const Map = ({ routes }) => {
       </g>
     );
   });
+
   return (
     <svg className="map" viewBox="-180 -90 360 180">
       <g transform="scale(1 -1)">
