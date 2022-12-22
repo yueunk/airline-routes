@@ -54,11 +54,11 @@ const App = () => {
       </header>
       <section>
         <p>
-          <Select name="airline" label="Show routes on " list={airlines} onChange={handleSelectAirline} selected={airline} />
-          <Select name="airport" label="flying in or out of " list={airports} onChange={handleSelectAirport} selected={airport}/>
+          <Select key="airline" name="airline" label="Show routes on " list={airlines} onChange={handleSelectAirline} selected={airline} routes={filterRoutes()} />
+          <Select key="airport" name="airport" label="flying in or out of " list={airports} onChange={handleSelectAirport} selected={airport} routes={filterRoutes()} />
           <button onClick={handleShowAll} disabled={airline === 'all' && airport === 'all'}>Show All Routes</button>
         </p>
-        <Table className="routes-table" columns={columns} rows="" format={formatValue} perPage={25} routes={filterRoutes()}/>
+        <Table className="routes-table" columns={columns} format={formatValue} perPage={25} routes={filterRoutes()} />
       </section>
     </div>
   )
