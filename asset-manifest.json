@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/airline-routes/static/css/main.da45a1f1.chunk.css",
+    "main.js": "/airline-routes/static/js/main.e60052f8.chunk.js",
+    "main.js.map": "/airline-routes/static/js/main.e60052f8.chunk.js.map",
+    "runtime-main.js": "/airline-routes/static/js/runtime-main.91222637.js",
+    "runtime-main.js.map": "/airline-routes/static/js/runtime-main.91222637.js.map",
+    "static/js/2.d7eb0cd0.chunk.js": "/airline-routes/static/js/2.d7eb0cd0.chunk.js",
+    "static/js/2.d7eb0cd0.chunk.js.map": "/airline-routes/static/js/2.d7eb0cd0.chunk.js.map",
+    "index.html": "/airline-routes/index.html",
+    "precache-manifest.f3f21752509275da7db4bd40b0dc8e5a.js": "/airline-routes/precache-manifest.f3f21752509275da7db4bd40b0dc8e5a.js",
+    "service-worker.js": "/airline-routes/service-worker.js",
+    "static/css/main.da45a1f1.chunk.css.map": "/airline-routes/static/css/main.da45a1f1.chunk.css.map",
+    "static/js/2.d7eb0cd0.chunk.js.LICENSE.txt": "/airline-routes/static/js/2.d7eb0cd0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91222637.js",
+    "static/js/2.d7eb0cd0.chunk.js",
+    "static/css/main.da45a1f1.chunk.css",
+    "static/js/main.e60052f8.chunk.js"
+  ]
+}
