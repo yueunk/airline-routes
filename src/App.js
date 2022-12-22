@@ -43,8 +43,8 @@ const App = () => {
 
   const filterRoutes = () => {
     let filtered = routes;
-    if (airline !== 'all') filtered = filtered.filter(({ airline : airlineId }) => getAirlineById(airlineId).name === airline);
-    if (airport !== 'all') filtered = filtered.filter(({ src, dest }) => getAirportByCode(src).name === airport || getAirportByCode(dest).name === airport);
+    if (airline !== 'all') filtered = filtered.filter(({ airline : airlineId }) => formatValue('airline', airlineId) === airline);
+    if (airport !== 'all') filtered = filtered.filter(({ src, dest }) => formatValue('airport', src) === airport || formatValue('airport', dest) === airport);
     return filtered;
   }
 
